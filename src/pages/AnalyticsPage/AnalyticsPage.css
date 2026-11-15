@@ -1,0 +1,178 @@
+.analytics-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 28px 72px;
+}
+
+.analytics-page__head { margin-bottom: 28px; }
+
+.analytics-page__title {
+  margin: 0 0 10px;
+  font-family: var(--font-body);
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  text-shadow: 6px 6px 0 var(--color-shadow);
+}
+
+.analytics-page__title-mark {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.3em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
+  text-shadow: none;
+}
+
+.analytics-page__subtitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.analytics-page__filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 2px dashed var(--color-border);
+}
+
+.analytics-page__filter {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background: transparent;
+  border: 2px solid var(--color-border);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s, background-color 0.12s;
+}
+
+.analytics-page__filter:hover { color: var(--color-white); border-color: var(--color-white); }
+
+.analytics-page__filter--active {
+  background: var(--color-white);
+  color: var(--color-ink);
+  border-color: var(--color-white);
+}
+
+/* ---- STAT CARDS ---- */
+.analytics-page__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.analytics-page__stat-card {
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  padding: 22px;
+  box-shadow: 6px 6px 0 var(--color-shadow);
+}
+
+.analytics-page__stat-label {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.analytics-page__stat-value {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+.analytics-page__stat-value span {
+  font-family: var(--font-mono);
+  font-size: 0.4em;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.analytics-page__stat-value--accent {
+  color: var(--color-white);
+}
+
+/* ---- CHARTS ---- */
+.analytics-page__charts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.chart-block {
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  padding: 24px;
+  box-shadow: 8px 8px 0 var(--color-shadow);
+}
+
+.chart-block__title {
+  margin: 0 0 4px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.chart-block__subtitle {
+  margin: 0 0 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.chart-block__canvas {
+  width: 100%;
+}
+
+/* ---- TOOLTIP (Recharts custom) ---- */
+.chart-tooltip {
+  background: var(--color-ink);
+  border: 2px solid var(--color-white);
+  padding: 10px 14px;
+  box-shadow: 4px 4px 0 var(--color-shadow);
+}
+
+.chart-tooltip__label {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.chart-tooltip__row {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+@media (max-width: 640px) {
+  .analytics-page { padding: 28px 18px 48px; }
+}

@@ -1,0 +1,37 @@
+.error-state {
+  max-width: 520px;
+  margin: 64px auto;
+  padding: 32px;
+  text-align: center;
+  border: 3px dashed var(--color-border);
+  background: var(--color-surface);
+}
+
+.error-state__tag {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-ink);
+  background: var(--color-white);
+}
+
+.error-state__title {
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.error-state__text {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--color-text);
+}

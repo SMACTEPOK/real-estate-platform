@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "email": "anna@estate.dev",
+      "displayName": "Анна Мельник",
+      "password": "$2b$10$syN.XDwGWz8l7NCi.uE1yuugiFsiKr21e5U/83/X/ISVFWnUioGzm"
+    }
+  ]
+}

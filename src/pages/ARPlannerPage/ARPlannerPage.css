@@ -1,0 +1,438 @@
+.ar-planner-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 28px 48px;
+  height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+}
+
+.ar-planner-page__head { display: flex; justify-content: space-between; margin-bottom: 20px; }
+.ar-planner-page__title { margin: 0 0 8px; font-family: var(--font-body); font-size: 40px; line-height: 1; color: var(--color-white); text-transform: uppercase; text-shadow: 4px 4px 0 var(--color-shadow); }
+.ar-planner-page__title-mark { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; color: var(--color-muted); text-shadow: none; }
+.ar-planner-page__subtitle { margin: 0; font-family: var(--font-mono); font-size: 11px; color: var(--color-muted); }
+
+.ar-planner-page__layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; flex: 1; min-height: 0; }
+
+/* SIDEBAR */
+.ar-planner-page__sidebar {
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.planner-title { margin: 0 0 10px; font-family: var(--font-mono); font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--color-muted); letter-spacing: 0.1em; }
+.planner-catalog { display: flex; flex-direction: column; gap: 8px; }
+
+.planner-btn {
+  font-family: var(--font-mono); font-weight: 700; font-size: 11px; text-align: left;
+  color: var(--color-text); background: transparent; border: 2px solid var(--color-border);
+  padding: 10px 14px; cursor: pointer; transition: all 0.15s; text-transform: uppercase;
+}
+.planner-btn:hover:not(:disabled) { border-color: var(--color-white); color: var(--color-white); }
+.planner-btn.is-active { background: var(--color-white); color: var(--color-ink); border-color: var(--color-white); }
+.planner-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.planner-btn--danger { color: #ff2d00; border-color: #ff2d00; }
+.planner-btn--danger:hover:not(:disabled) { background: #ff2d00; color: #fff; }
+
+.planner-select {
+  width: 100%; font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  background: var(--color-background); color: var(--color-white);
+  border: 2px solid var(--color-border); padding: 8px; outline: none; cursor: pointer;
+}
+
+.planner-section--selected { padding-top: 16px; border-top: 2px dashed var(--color-border); }
+.planner-colors { display: flex; gap: 8px; flex-wrap: wrap; }
+.planner-color {
+  width: 32px; height: 32px; border: 2px solid var(--color-border); cursor: pointer; transition: transform 0.1s;
+}
+.planner-color:hover { transform: scale(1.1); }
+.planner-color.is-active { border-color: var(--color-white); transform: scale(1.1); box-shadow: 0 0 0 2px var(--color-ink); }
+
+.planner-section--actions { margin-top: auto; padding-top: 20px; border-top: 2px dashed var(--color-border); display: flex; flex-direction: column; gap: 10px; }
+
+/* CANVAS */
+.ar-planner-page__canvas-wrap {
+  position: relative; background: var(--color-background);
+  border: 3px solid var(--color-border); box-shadow: 8px 8px 0 var(--color-shadow); overflow: hidden;
+}
+
+@media (max-width: 900px) { .ar-planner-page__layout { grid-template-columns: 1fr; } }
+
+.planner-toggle {
+  display: flex;
+  gap: 8px;
+}
+.planner-toggle .planner-btn {
+  flex: 1;
+  text-align: center;
+}
+
+.planner-section input[type="number"] {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+  color: var(--color-white);
+  background: var(--color-background);
+}
+
+.planner-section input[type="number"]:focus,
+.planner-select:focus {
+  border-color: var(--color-white);
+}
+
+.planner-section--selected .planner-toggle {
+  flex-wrap: wrap;
+}
+
+.planner-section--selected .planner-toggle .planner-btn {
+  min-width: 0;
+}
+
+/* Material editor */
+.planner-color-input {
+  height: 42px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.planner-color-input::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.planner-color-input::-webkit-color-swatch {
+  border: 1px solid var(--color-border);
+}
+
+.planner-file-label {
+  display: block;
+  cursor: pointer;
+}
+
+.planner-file-label input {
+  display: none;
+}
+
+.planner-canvas-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid var(--color-border);
+  color: var(--color-white);
+  font: 10px var(--font-mono);
+  pointer-events: none;
+}
+
+.ar-planner-page__canvas-wrap canvas {
+  display: block;
+  touch-action: none;
+}
+
+.planner-section {
+  min-width: 0;
+}
+
+.planner-section .planner-title {
+  display: block;
+  margin-top: 12px;
+}
+
+.planner-section input[type="number"] {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .ar-planner-page {
+    height: auto;
+    min-height: calc(100vh - 72px);
+    padding: 20px 12px;
+  }
+
+  .ar-planner-page__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ar-planner-page__sidebar {
+    max-height: none;
+  }
+
+  .ar-planner-page__canvas-wrap {
+    min-height: 500px;
+  }
+
+  .ar-planner-page__title {
+    font-size: 30px;
+  }
+}
+
+/* Виправлення UI плашок */
+.planner-toggle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.planner-toggle .planner-btn {
+  padding: 8px 4px;
+  font-size: 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Кастомний колір */
+.planner-color-input {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 2px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+}
+.planner-color-input::-webkit-color-swatch-wrapper { padding: 0; }
+.planner-color-input::-webkit-color-swatch { border: none; }
+
+/* Виправлення текстових плашок та адаптивності */
+.planner-catalog,
+.planner-toggle,
+.planner-rotate-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.planner-catalog .planner-btn,
+.planner-toggle .planner-btn,
+.planner-rotate-controls .planner-btn {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 9px 7px;
+  line-height: 1.35;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-overflow: clip;
+}
+
+.planner-section,
+.planner-section--selected {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.planner-title {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.planner-help {
+  margin: 8px 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.planner-colors {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 32px));
+  gap: 8px;
+  align-items: center;
+}
+
+.planner-color {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  min-width: 0;
+  border-radius: 2px;
+}
+
+.planner-custom-color {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  border: 2px dashed var(--color-muted);
+  color: var(--color-white);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.planner-custom-color input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.planner-custom-color span {
+  font-size: 20px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.planner-select {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 38px;
+}
+
+.planner-btn:focus-visible,
+.planner-color:focus-visible,
+.planner-custom-color:focus-within {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
+
+.planner-section--actions {
+  gap: 8px;
+}
+
+.planner-canvas-hint {
+  max-width: calc(100% - 24px);
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .planner-catalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ar-planner-page__canvas-wrap {
+    min-height: 480px;
+  }
+
+  .planner-colors {
+    grid-template-columns: repeat(6, 32px);
+  }
+}
+
+@media (max-width: 420px) {
+  .planner-catalog .planner-btn {
+    font-size: 10px;
+    padding: 8px 4px;
+  }
+
+  .planner-canvas-hint {
+    font-size: 9px;
+  }
+}
+
+/* Покращення палітри кольорів */
+.planner-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.planner-color {
+  width: 32px;
+  height: 32px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, border-color 0.1s;
+  padding: 0;
+  outline: none;
+}
+
+.planner-color:hover {
+  transform: scale(1.1);
+}
+
+.planner-color.is-active {
+  border-color: var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-ink);
+  transform: scale(1.1);
+}
+
+/* Кастомна кнопка (Веселка) */
+.planner-color-custom {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-border);
+  background: conic-gradient(
+    #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000
+  );
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transition: transform 0.1s, border-color 0.1s;
+}
+
+.planner-color-custom:hover {
+  transform: scale(1.1);
+  border-color: var(--color-white);
+}
+
+.planner-color-custom input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.planner-color-custom__plus {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 0 3px #000, 0 0 5px #000;
+  pointer-events: none;
+  margin-top: -2px;
+}
+
+.planner-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background: var(--color-background);
+  border: 3px solid var(--color-border);
+}
+
+.planner-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  box-shadow: 8px 8px 0 var(--color-shadow);
+  white-space: nowrap;
+}

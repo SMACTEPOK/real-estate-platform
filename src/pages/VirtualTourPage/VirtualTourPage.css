@@ -1,0 +1,73 @@
+.tour-page {
+  position: fixed;
+  inset: 0;
+  background: var(--color-background);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.tour-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.tour-page__title {
+  margin: 0 0 6px;
+  font-family: var(--font-body);
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.tour-page__subtitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.tour-page__back-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink);
+  background: var(--color-white);
+  border: 3px solid var(--color-white);
+  padding: 10px 16px;
+  box-shadow: 4px 4px 0 var(--color-shadow);
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.tour-page__back-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-shadow);
+}
+
+.tour-page__viewer {
+  flex: 1;
+  min-height: 0; /* Важливо для flex-контейнерів із вкладеними скрол-контейнерами */
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-page__viewer .virtual-tour {
+  flex: 1;
+}
+
+/* Ховаємо футер і хедер сайту, коли відкритий тур (якщо вони є у AppLayout) */
+body:has(.tour-page) {
+  overflow: hidden;
+}

@@ -1,0 +1,61 @@
+.virtual-tour {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-ink);
+  border: 3px solid var(--color-border);
+  box-shadow: 8px 8px 0 var(--color-shadow);
+}
+
+.virtual-tour__container {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+}
+
+/* Перекриваємо стандартні стилі Pannellum під наш брутальний стиль */
+.virtual-tour .pnlm-container {
+  background-color: var(--color-ink);
+  font-family: var(--font-mono) !important;
+}
+
+.virtual-tour .pnlm-about-msg {
+  display: none !important;
+}
+
+.virtual-tour .pnlm-controls-container {
+  top: 20px;
+  left: 20px;
+}
+
+.virtual-tour__overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.virtual-tour__badge {
+  display: inline-block;
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  letter-spacing: 0.1em;
+}
+
+.virtual-tour__hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 8px;
+}
